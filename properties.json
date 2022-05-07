@@ -1,0 +1,7 @@
+
+{
+    "USERNAME": "e.melara@uniandes.edu.co",
+    "PASSWORD": "#Pruebas123",
+    "LOGIN_URL": "http://localhost:2369/ghost/#/signin",
+    "BASE_URl": "http://localhost:2369/ghost/#/signin"
+}
