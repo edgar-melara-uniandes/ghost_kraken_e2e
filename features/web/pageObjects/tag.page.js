@@ -1,11 +1,11 @@
-module.exports = class PagesPage {
+module.exports = class TagsPage {
     
     constructor(driver) {
         this.driver = driver;
     }
 
-   get eleNewPageLink() {
-        const newPostLink = this.driver.$(`a[href="#/editor/page/"]`);
+   get eleNewTagLink() {
+        const newPostLink = this.driver.$(`a[href="#/tags/new/"]`);
         if(newPostLink != null) {
             return newPostLink;
         } else {
@@ -13,7 +13,7 @@ module.exports = class PagesPage {
         }
     }
     listPages(text){
-        const listPages = this.driver.$(`//li[@class='gh-list-row gh-posts-list-item']/a/h3[@class='gh-content-entry-title'][contains(., '${text}')]`);
+        const listPages = this.driver.$(`//li[@class='gh-list-row gh-tags-list-item ember-view']/a/h3[@class='gh-tag-list-name'][contains(., '${text}')]`);
         console.log(listPages)
         if(listPages != null) {
             return listPages;
