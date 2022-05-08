@@ -3,9 +3,7 @@ Feature: Create Post
   @user1 @web
   Scenario: As a user I want to create and publish post
     Given I navigate to page "<LOGIN_URL>"
-    When I enter "<USERNAME>" into input field having name attribute "identification"
-    When I enter "<PASSWORD>" into input field having name attribute "password"
-    When I click on button having css selector "login gh-btn"
+    When I login with "<USERNAME>" and "<PASSWORD>"
     When I wait
     Then I expect that url contain "#/site"
     When I click on link having href "#/posts/"

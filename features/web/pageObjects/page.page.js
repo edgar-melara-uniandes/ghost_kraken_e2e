@@ -1,4 +1,4 @@
-module.exports = class Page {
+module.exports = class PagesPage {
     
     constructor(driver) {
         this.driver = driver;
