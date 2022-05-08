@@ -1,5 +1,4 @@
 module.exports =  class PageEditorPage {
-    private page: Page;
 
     constructor(driver) {
         this.driver = driver;
@@ -51,7 +50,7 @@ module.exports =  class PageEditorPage {
     }
 
     get eleScheduleRadioBtn(){
-        const schedulePublishBtn = this.driver.$("gh-publishmenu-radio-button");
+        const schedulePublishBtn = this.driver.$(".gh-publishmenu-radio-button");
         if(schedulePublishBtn != null){
             return schedulePublishBtn;
         }else{

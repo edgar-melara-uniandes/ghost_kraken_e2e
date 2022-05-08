@@ -5,7 +5,7 @@ module.exports = class PagesPage {
     }
 
    get eleNewPageLink() {
-        const newPostLink = this.driver.$("text='New page'");
+        const newPostLink = this.driver.$(`a[href="#/editor/page/"]`);
         if(newPostLink != null) {
             return newPostLink;
         } else {

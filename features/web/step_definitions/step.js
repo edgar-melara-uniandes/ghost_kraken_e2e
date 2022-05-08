@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const LoginPage = require('../pageObjects/login.page');
-const HomePage = require('../pageObejcts/home.page');
+const HomePage = require('../pageObjects/home.page');
 const PagesPage = require('../pageObjects/page.page');
 const PageEditorPage = require('../pageObjects/page-editor.page');
 
@@ -31,14 +31,14 @@ When('I click on new page', async function(){
 
 When('I enter page title {string}', async function(title){
     const pageEditorPage = new PageEditorPage(this.driver);
-    const title = pageEditorPage.eleTitle;
-    return await title.setValue(title);
+    const pageTitle = pageEditorPage.eleTitle;
+    return await pageTitle.setValue(title);
 });
 
 When('I begin writing page description {string}', async function(description){
     const pageEditorPage = new PageEditorPage(this.driver);
-    const description = pageEditorPage.eleDescription;
-    return await description.setValue(description);
+    const pageDescription = pageEditorPage.eleDescription;
+    return await pageDescription.setValue(description);
 });
 
 When('I click on pubish page link', async function (){
@@ -53,7 +53,7 @@ When('I click on schedule page publish it for later', async function (){
     return await scheduleRadioBtn.click();
 })
 
-When('I click on publish page button', async function(){
+When('I click on schedule page button', async function(){
     const pageEditorPage = new PageEditorPage(this.driver);
     const publishBtn = pageEditorPage.elePublishBtn;
     return await publishBtn.click();

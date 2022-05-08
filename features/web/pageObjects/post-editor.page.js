@@ -1,6 +1,5 @@
 
 module.exports =  class PostEditorPage {
-    private page: Page;
 
     constructor(driver) {
         this.driver = driver;
@@ -43,6 +42,15 @@ module.exports =  class PostEditorPage {
     }
 
     get elePublishBtn() {
+        const publishButton = this.driver.$("button.gh-publishmenu-button");
+        if(publishButton != null) {
+            return publishButton;
+        } else {
+            throw new Error("No publishButton element");
+        }
+    }
+
+    get eleScheduleBtn() {
         const publishButton = this.driver.$("button.gh-publishmenu-button");
         if(publishButton != null) {
             return publishButton;

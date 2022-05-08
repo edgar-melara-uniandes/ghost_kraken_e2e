@@ -14,7 +14,7 @@ module.exports = class HomePage {
     }
 
     get elePagesLink() {
-        const pagesLink = this.driver.$("text='Pages'");
+        const pagesLink = this.driver.$(`a[href="#/pages/"]`);
         if(pagesLink != null) {
             return pagesLink;
         } else {

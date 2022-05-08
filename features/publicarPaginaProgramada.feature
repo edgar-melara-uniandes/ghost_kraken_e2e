@@ -6,7 +6,7 @@ Feature: Create Page schedule for later
     When I login with "<USERNAME>" and "<PASSWORD>"
     And I wait
     Then I expect that url contain "#/site"
-    when I click on pages in the navbar
+    When I click on pages in the navbar
     And I wait for 2 seconds
     And I click on new page
     And I wait for 2 seconds
@@ -14,5 +14,5 @@ Feature: Create Page schedule for later
     And I begin writing page description "Pagina con publicacion programada"
     When I click on pubish page link
     And I click on schedule page publish it for later
-    And I click on publish page button
+    And I click on schedule page button
     Then I should see text "Will be published in"
