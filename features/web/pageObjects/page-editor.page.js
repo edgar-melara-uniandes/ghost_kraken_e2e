@@ -93,7 +93,7 @@ module.exports =  class PageEditorPage {
         }
     }
     get eleDetelePage() {
-        const viewPost = this.driver.$("button.settings-menu-delete-button");
+        const viewPost = this.driver.$("//span[contains(., 'Delete page')]");
         if(viewPost != null) {
             return viewPost;
         } else {
