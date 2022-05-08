@@ -3,7 +3,9 @@ const LoginPage = require('../pageObjects/login.page');
 const HomePage = require('../pageObjects/home.page');
 const PagesPage = require('../pageObjects/page.page');
 const PageEditorPage = require('../pageObjects/page-editor.page');
-const TagsPage = require('../pageObjects/tags.page')
+const TagsPage = require('../pageObjects/tags.page');
+const PostPage = require('../pageObjects/post.page');
+const PostEditorPage = require('../pageObjects/post-editor.page');
 
 //ready
 //login steps
@@ -22,13 +24,13 @@ When('I click on pages in the navbar', async function (){
     const homePage = new HomePage(this.driver);
     const pages = homePage.elePagesLink;
     return await pages.click();
-})
+});
 
 When('I click on new page', async function(){
     const pagesPage = new PagesPage(this.driver);
     const newPageBtn = pagesPage.eleNewPageLink;
     return newPageBtn.click();
-})
+});
 
 When('I enter page title {string}', async function(title){
     const pageEditorPage = new PageEditorPage(this.driver);
@@ -59,6 +61,78 @@ When('I click on schedule page button', async function(){
     const publishBtn = pageEditorPage.elePublishBtn;
     return await publishBtn.click();
 });
+
+//post steps
+
+When('I click on posts in the navbar', async function (){
+    const homePage = new HomePage(this.driver);
+    const pages = homePage.elePostsLink;
+    return await pages.click();
+});
+
+When('I click on new post', async function(){
+    const postPage = new PostPage(this.driver);
+    const newPostBtn = postPage.eleNewPostLink;
+    return newPostBtn.click();
+});
+
+When('I enter post title {string}', async function(title){
+    const elements = new PostEditorPage(this.driver);
+    const postTitle = elements.eleTitle;
+    return await postTitle.setValue(title);
+});
+
+When('I begin writing post description {string}', async function(description){
+    const elements = new PostEditorPage(this.driver);
+    const postDescription = elements.eleDescription;
+    return await postDescription.setValue(description);
+});
+
+
+When('I click on post settings', async function(){
+    const elements = new PostEditorPage(this.driver);
+    const postSettings = elements.elePostSettings;
+    return await postSettings.click();
+});
+
+When('I select post tag {string}', async function(tag){
+    const elements = new PostEditorPage(this.driver);
+    const menu = elements.elePostTagsMenu;
+    return await menu.setValue(tag);
+});
+
+When('I click on post tag element', async function(){
+    const elements = new PostEditorPage(this.driver);
+    const listElement = elements.eleTagElement;
+    return await listElement.click();
+});
+
+
+When('I click on close post settings button', async function(){
+    const elements = new PostEditorPage(this.driver);
+    const closePostSettings = elements.eleClosePostSettings;
+    return await closePostSettings.click();
+});
+
+When('I click on pubish post link', async function (){
+    const elements = new PostEditorPage(this.driver);
+    const publishLink = elements.elePublishLink;
+    return await publishLink.click();
+});
+
+
+When('I click on publish post button', async function(){
+    const elements = new PostEditorPage(this.driver);
+    const publishBtn = elements.elePublishBtn;
+    return await publishBtn.click();
+});
+
+When('I click on view post', async function(){
+    const elements = new PostEditorPage(this.driver);
+    const viewPost = elements.eleViewPost;
+    return await viewPost.click();
+});
+
 
 //tags steps
 

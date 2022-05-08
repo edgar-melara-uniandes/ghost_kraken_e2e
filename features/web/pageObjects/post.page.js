@@ -5,7 +5,7 @@ module.exports =  class PostPage {
     }
 
     get eleNewPostLink() {
-        const newPostLink = this.driver.$("text='New post'");
+        const newPostLink = this.driver.$(`a[href="#/editor/post/"]`);
         if(newPostLink != null) {
             return newPostLink;
         } else {
