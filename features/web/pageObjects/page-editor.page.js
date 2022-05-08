@@ -50,7 +50,7 @@ module.exports =  class PageEditorPage {
     }
 
     get eleScheduleRadioBtn(){
-        const schedulePublishBtn = this.driver.$(".gh-publishmenu-radio-button");
+        const schedulePublishBtn = this.driver.$("//div[text()='Schedule it for later']");
         if(schedulePublishBtn != null){
             return schedulePublishBtn;
         }else{
