@@ -178,6 +178,18 @@ When('I return to tags list', async function(){
     return returnLink.click();
 });
 
+When('I click in delete tag', async function(){
+    const elements = new TagsPage(this.driver);
+    const deleteTag = elements.eleDeleteTagBtn;
+    return deleteTag.click();
+});
+
+When('I click on delete button', async function(){
+    const elements = new TagsPage(this.driver);
+    const deleteBtn = elements.eleDeleteBtn;
+    return deleteBtn.click();
+});
+
 
 Then('I expect tag created with name {string}', async function (text) {
     let element = await this.driver.$(`//a[contains(.,'${text}')]`);
@@ -185,6 +197,10 @@ Then('I expect tag created with name {string}', async function (text) {
     if(element.getAttribute('href') === null) {
         throw new TypeError(`Text ${text} does not exist.`);
     }
+});
+
+Then('I expect to go back to tag list', async function () {
+    return await this.driver.$(`//h2[contains(.,'Tags')]`);
 });
 
 

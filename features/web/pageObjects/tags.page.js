@@ -67,6 +67,24 @@ module.exports = class TagsPage {
         }
     }
 
+    get eleDeleteTagBtn() {
+        const deleteBtn = this.driver.$("//span[text()='Delete tag']");
+        if(deleteBtn != null) {
+            return deleteBtn;
+        } else {
+            throw new Error("No loginBtn element");
+        }
+    }
+
+    get eleDeleteBtn() {
+        const deleteBtn = this.driver.$("//span[text()='Delete']");
+        if(deleteBtn != null) {
+            return deleteBtn;
+        } else {
+            throw new Error("No loginBtn element");
+        }
+    }
+
 
 
 }
