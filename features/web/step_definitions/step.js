@@ -3,6 +3,7 @@ const LoginPage = require('../pageObjects/login.page');
 const HomePage = require('../pageObjects/home.page');
 const PagesPage = require('../pageObjects/page.page');
 const PageEditorPage = require('../pageObjects/page-editor.page');
+const TagsPage = require('../pageObjects/tags.page')
 
 //ready
 //login steps
@@ -51,13 +52,67 @@ When('I click on schedule page publish it for later', async function (){
     const pageEditorPage = new PageEditorPage(this.driver);
     const scheduleRadioBtn = pageEditorPage.eleScheduleRadioBtn;
     return await scheduleRadioBtn.click();
-})
+});
 
 When('I click on schedule page button', async function(){
     const pageEditorPage = new PageEditorPage(this.driver);
     const publishBtn = pageEditorPage.elePublishBtn;
     return await publishBtn.click();
-})
+});
+
+//tags steps
+
+When('I click on tags in the navbar', async function (){
+    const homePage = new HomePage(this.driver);
+    const tags = homePage.eleTagsLink;
+    return await tags.click();
+});
+
+When('I click on new tag', async function(){
+    const tagsPage = new TagsPage(this.driver);
+    const newTagLink = tagsPage.eleNewTagLink;
+    return newTagLink.click();
+});
+
+When('I enter tag name {string}', async function(name){
+    const tagsPage = new TagsPage(this.driver);
+    const tagName = tagsPage.eleTagName;
+    return tagName.setValue(name);
+});
+
+When('I enter tag color {string}', async function(color){
+    const tagsPage = new TagsPage(this.driver);
+    const tagColor = tagsPage.eleTagColor;
+    return tagColor.setValue(color);
+});
+
+When('I enter tag description {string}', async function(description){
+    const tagsPage = new TagsPage(this.driver);
+    const tagDescription = tagsPage.eleTagDescription;
+    return tagDescription.setValue(description);
+});
+
+When('I click on save tag', async function(){
+    const tagsPage = new TagsPage(this.driver);
+    const saveBtn = tagsPage.eleSavenBtn;
+    return saveBtn.click();
+});
+
+When('I return to tags list', async function(){
+    const tagsPage = new TagsPage(this.driver);
+    const returnLink = tagsPage.eleReturnTagLink;
+    return returnLink.click();
+});
+
+
+Then('I expect tag created with name {string}', async function (text) {
+    let element = await this.driver.$(`//a[contains(.,'${text}')]`);
+    console.log(JSON.stringify(element));
+    if(element.getAttribute('href') === null) {
+        throw new TypeError(`Text ${text} does not exist.`);
+    }
+});
+
 
 //helpers
 Then('I should see text {string}', async function (text) {

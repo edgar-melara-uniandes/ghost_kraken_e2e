@@ -5,7 +5,7 @@ module.exports = class HomePage {
     }
 
     get elePostsLink() {
-        const postsLink = this.driver.$("text='Posts'");
+        const postsLink = this.driver.$(`a[href="#/posts/"]`);
         if(postsLink != null) {
             return postsLink;
         } else {
@@ -23,7 +23,7 @@ module.exports = class HomePage {
     }
 
     get eleTagsLink() {
-        const tagsLink = this.page.$("text='Tags'");
+        const tagsLink = this.driver.$(`a[href="#/tags/"]`);
         if(tagsLink != null) {
             return tagsLink;
         } else {
@@ -32,7 +32,7 @@ module.exports = class HomePage {
     }
 
     get eleStaffLink() {
-        const staffLink = this.page.$("text='Staff'");
+        const staffLink = this.driver.$(`a[href="#/staff/"]`);
         if(staffLink != null) {
             return staffLink;
         } else {
