@@ -1,4 +1,4 @@
-Feature: Crear tag en Ghost
+Feature: Crear tag y adicionarlo en post de Ghost
 
 @user1 @web
 

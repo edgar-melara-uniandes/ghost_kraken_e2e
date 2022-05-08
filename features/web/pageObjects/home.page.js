@@ -30,14 +30,31 @@ module.exports = class HomePage {
             throw new Error("No tagsLink element");
         }
     }
-
+    
     get eleStaffLink() {
-        const staffLink = this.page.$("text='Staff'");
+        const staffLink = this.driver.$(`a[href="#/staff/"]`);
         if(staffLink != null) {
             return staffLink;
         } else {
             throw new Error("No staffLink element");
         }
     }
+    get eleUserConfigLink() {
+        const userConfigLink = this.driver.$(`//div[@class='ember-view ember-basic-dropdown-trigger  flex items-center outline-0 pointer space-between pa2 pl4 pr3 mt3 mb6'][@role='button']`);
+        if(userConfigLink != null) {
+            return userConfigLink;
+        } else {
+            throw new Error("No staffLink element");
+        }
+    }
+    get eleSignOutLink() {
+        const signOutLink = this.driver.$(`a[href='#/signout/']`);
+        if(signOutLink != null) {
+            return signOutLink;
+        } else {
+            throw new Error("No staffLink element");
+        }
+    }
+    
 
 }

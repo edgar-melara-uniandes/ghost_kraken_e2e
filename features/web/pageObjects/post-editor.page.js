@@ -117,7 +117,15 @@ module.exports =  class PostEditorPage {
             throw new Error("No ScheduleDateField element");
         }
     }
-
+    
+    get eleUnpublishOption() {
+        const unpublishOption = this.driver.$("//div[@class='gh-publishmenu-radio-label'][contains(., 'Unpublished')]");
+        if(unpublishOption != null) {
+            return unpublishOption;
+        } else {
+            throw new Error("No publishButton element");
+        }
+    }
 
     get eleViewPost() {
         const viewPost = this.page.$("View Post");

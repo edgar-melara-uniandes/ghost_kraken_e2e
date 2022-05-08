@@ -21,5 +21,14 @@ module.exports =  class PostPage {
             throw new Error("No newPostLink element");
         }
     }
+    listPosts(text){
+        const listPages = this.driver.$(`//li[@class='gh-list-row gh-posts-list-item']/a/h3[@class='gh-content-entry-title'][contains(., '${text}')]`);
+        console.log(listPages)
+        if(listPages != null) {
+            return listPages;
+        } else {
+            throw new Error("No listPages element");
+        }
+    }
 
 }

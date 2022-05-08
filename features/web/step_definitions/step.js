@@ -8,6 +8,8 @@ const TagsPage = require('../pageObjects/tag.page');
 const TagsEditorPage = require('../pageObjects/tag-editor.page');
 const PostPage = require('../pageObjects/post.page');
 const PostEditorPage = require('../pageObjects/post-editor.page');
+const StaffEditorPage = require('../pageObjects/staff-editor.page');
+const StaffPage = require('../pageObjects/staff.page');
 
 //ready
 //login steps
@@ -52,6 +54,12 @@ When('I click on pubish page link', async function (){
     return await publishLink.click();
 });
 
+When('I click on update page link', async function (){
+    const pageEditorPage = new PageEditorPage(this.driver);
+    const publishLink = pageEditorPage.eleUpdateLink;
+    return await publishLink.click();
+});
+
 When('I click on schedule page publish it for later', async function (){
     const pageEditorPage = new PageEditorPage(this.driver);
     const scheduleRadioBtn = pageEditorPage.eleScheduleRadioBtn;
@@ -76,6 +84,34 @@ Then('I found the page has been created {string}', async function(title){
     if(list === null) {
         throw new TypeError(`Text ${title} does not exist.`);
     }
+})
+Then('I found the page has been created {string} click', async function(title){
+    const listPages = new PagesPage(this.driver);
+    const list = listPages.listPages(title);
+    if(list === null) {
+        throw new TypeError(`Text ${title} does not exist.`);
+    }
+    return await list.click()
+})
+When('I click on one page', async function(){
+    const pagesPage = new PagesPage(this.driver);
+    const newPageBtn = pagesPage.eleOnePageLink;
+    return newPageBtn.click();
+})
+When('I click on config page', async function(){
+    const pagesPage = new PageEditorPage(this.driver);
+    const newPageBtn = pagesPage.eleConfigPage;
+    return newPageBtn.click();
+})
+When('I click on delete page', async function(){
+    const pagesPage = new PageEditorPage(this.driver);
+    const newPageBtn = pagesPage.eleDetelePage;
+    return newPageBtn.click();
+})
+When('I click on confrim delete page', async function(){
+    const pagesPage = new PageEditorPage(this.driver);
+    const newPageBtn = pagesPage.eleDeteleConfirmPage;
+    return newPageBtn.click();
 })
 // Tags
 When('I click on tags in the navbar', async function (){
@@ -120,9 +156,19 @@ When('I click on post in the navbar', async function (){
 })
 When('I click on new post', async function(){
     const pagesPage = new PostPage(this.driver);
-    const newPageBtn = pagesPage.eleNewPageLink;
+    const newPageBtn = pagesPage.eleNewPostLink;
     return newPageBtn.click();
 })
+When('I enter post title {string}', async function(title){
+    const postEditorPage = new PostEditorPage(this.driver);
+    const pageTitle = postEditorPage.eleTitle;
+    return await pageTitle.setValue(title);
+});
+When('I enter post description {string}', async function(description){
+    const postEditorPage = new PostEditorPage(this.driver);
+    const pageDescription = postEditorPage.eleDescription;
+    return await pageDescription.setValue(description);
+});
 When('I click on config post', async function(){
     const pagesPage = new PostEditorPage(this.driver);
     const newPageBtn = pagesPage.eleConfig;
@@ -150,6 +196,29 @@ When('I click on update post link', async function(){
     const publishBtn = pageEditorPage.eleUpdateLink;
     return await publishBtn.click();
 })
+When('I click on pubish post link', async function (){
+    const postEditorPage = new PostEditorPage(this.driver);
+    const publishLink = postEditorPage.elePublishLink;
+    return await publishLink.click();
+});
+When('I click on publish post button', async function(){
+    const postEditorPage = new PostEditorPage(this.driver);
+    const publishBtn = postEditorPage.elePublishBtn;
+    return await publishBtn.click();
+})
+When('I click on unpublish post option', async function(){
+    const postEditorPage = new PostEditorPage(this.driver);
+    const publishBtn = postEditorPage.eleUnpublishOption;
+    return await publishBtn.click();
+})
+Then('I found the post has been created {string} click', async function(title){
+    const listPosts = new PostPage(this.driver);
+    const list = listPosts.listPosts(title);
+    if(list === null) {
+        throw new TypeError(`Text ${title} does not exist.`);
+    }
+    return await list.click();
+})
 //helpers
 Then('I should see text {string}', async function (text) {
     let element = await this.driver.$(`//*[contains(text(), '${text}')]`);
@@ -175,6 +244,96 @@ Then('I expect that url contain {string}', async function (urlFragment) {
     }
 });
 
+// Staff
+When('I click on staff in the navbar', async function (){
+    const homePage = new HomePage(this.driver);
+    const post = homePage.eleStaffLink;
+    return await post.click();
+})
+
+When('I click on new user', async function(){
+    const pagesPage = new StaffPage(this.driver);
+    const newPageBtn = pagesPage.eleNewStaffLink;
+    return newPageBtn.click();
+})
+
+When('I click on one user', async function(){
+    const pagesPage = new StaffPage(this.driver);
+    const newPageBtn = pagesPage.eleOnePageLink;
+    return newPageBtn.click();
+})
+
+When('I change email user {string}', async function(email){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const emailField = staffEditor.eleEmail;
+    await emailField.setValue(email);
+})
+
+When('I change password old password user {kraken-string} to {string}', async function(oldPassword, eleNewPassword){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const passwordOldField = staffEditor.eleOldPassword;
+    const passwordNewField = staffEditor.eleNewPassword;
+    const passwordVerifyField = staffEditor.eleVerifyPassword;
+    await passwordOldField.setValue(oldPassword);
+    await passwordNewField.setValue(eleNewPassword);
+    await passwordVerifyField.setValue(eleNewPassword);
+})
+
+When('I change password original password user {string} to {kraken-string}', async function(oldPassword, eleNewPassword){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const passwordOldField = staffEditor.eleOldPassword;
+    const passwordNewField = staffEditor.eleNewPassword;
+    const passwordVerifyField = staffEditor.eleVerifyPassword;
+    await passwordOldField.setValue(oldPassword);
+    await passwordNewField.setValue(eleNewPassword);
+    await passwordVerifyField.setValue(eleNewPassword);
+})
+
+When('I change email original user {kraken-string}', async function(email){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const emailField = staffEditor.eleEmail;
+    await emailField.setValue(email);
+})
+
+When('I click on save button', async function(){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const saveBtn = staffEditor.eleSaveBtn;
+    return await saveBtn.click();
+})
+When('I click on config user link', async function(){
+    const staffEditor = new HomePage(this.driver);
+    const userConfigBtn = staffEditor.eleUserConfigLink;
+    return await userConfigBtn.click()
+})
+When('I click on logout link', async function(){
+    const staffEditor = new HomePage(this.driver);
+    const userConfigBtn = staffEditor.eleSignOutLink;
+    return await userConfigBtn.click()
+})
+When('I click on change password button', async function(){
+    const staffEditor = new StaffEditorPage(this.driver);
+    const userConfigBtn = staffEditor.eleChangePasswordBtn;
+    return await userConfigBtn.click()
+})
+When('I login with new email {string} and {kraken-string}', async function (email, password) {
+    const loginPage = new LoginPage(this.driver);
+    const emailField = loginPage.eleEmailAddressTextField;
+    const passwordField= loginPage.elePasswordTextField;
+    const button = loginPage.eleLoginBtn;
+    await emailField.setValue(email);
+    await passwordField.setValue(password);
+    await button.click();
+});
+
+When('I login with new password {kraken-string} and {string}', async function (email, password) {
+    const loginPage = new LoginPage(this.driver);
+    const emailField = loginPage.eleEmailAddressTextField;
+    const passwordField= loginPage.elePasswordTextField;
+    const button = loginPage.eleLoginBtn;
+    await emailField.setValue(email);
+    await passwordField.setValue(password);
+    await button.click();
+});
 //need modifications
 
 
