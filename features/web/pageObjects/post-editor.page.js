@@ -50,6 +50,15 @@ module.exports =  class PostEditorPage {
         }
     }
 
+    get eleUpdateLink() {
+        const publishButton = this.driver.$("//span[text()='Update']");
+        if(publishButton != null) {
+            return publishButton;
+        } else {
+            throw new Error("No publishButton element");
+        }
+    }
+
     get eleScheduleBtn() {
         const publishButton = this.driver.$("button.gh-publishmenu-button");
         if(publishButton != null) {
@@ -84,7 +93,47 @@ module.exports =  class PostEditorPage {
         }else{
             throw new Error("No postSettings element");
         }
-
+    }
+    get eleConfig(){
+        const scheduleDateField = this.driver.$("button.post-settings");
+        if(scheduleDateField !== null){
+            return scheduleDateField;
+        }else{
+            throw new Error("No ScheduleDateField element");
+        }
+    }
+    get eleCloseConfig(){
+        const closeBtn = this.driver.$("//button[@class='close settings-menu-header-action']");
+        if(closeBtn !== null){
+            return closeBtn;
+        }else{
+            throw new Error("No ScheduleDateField element");
+        }
+    }
+    get eleTag(){
+        const scheduleDateField = this.driver.$("#tag-input");
+        if(scheduleDateField !== null){
+            return scheduleDateField;
+        }else{
+            throw new Error("No ScheduleDateField element");
+        }
+    }
+    get eleSelectedTag(){
+        const selectedTag = this.driver.$("//li[@class='ember-power-select-option'][@data-option-index='1']")
+        if(selectedTag !== null){
+            return selectedTag;
+        }else{
+            throw new Error("No ScheduleDateField element");
+        }
+    }
+    
+    get eleUnpublishOption() {
+        const unpublishOption = this.driver.$("//div[@class='gh-publishmenu-radio-label'][contains(., 'Unpublished')]");
+        if(unpublishOption != null) {
+            return unpublishOption;
+        } else {
+            throw new Error("No publishButton element");
+        }
     }
 
     get elePostTagsMenu(){

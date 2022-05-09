@@ -1,19 +1,19 @@
-module.exports = class PagesPage {
+module.exports = class StaffPage {
     
     constructor(driver) {
         this.driver = driver;
     }
 
-   get eleNewPageLink() {
-        const newPostLink = this.driver.$(`a[href="#/editor/page/"]`);
-        if(newPostLink != null) {
-            return newPostLink;
+   get eleNewStaffLink() {
+        const newStaffLink = this.driver.$(`//button[@class='gh-btn gh-btn-green']/span[contains(.,'Invite people')]`);
+        if(newStaffLink != null) {
+            return newStaffLink;
         } else {
             throw new Error("No newPostLink element");
         }
     }
     get eleOnePageLink() {
-        const newPostLink = this.driver.$(`//a[@class='ember-view permalink gh-list-data gh-post-list-featured']`);
+        const newPostLink = this.driver.$(`//div[@class='apps-grid-cell tooltip-centered']/a`);
         if(newPostLink != null) {
             return newPostLink;
         } else {
